@@ -1,8 +1,9 @@
 using System.Xml.Serialization;
+using XSDGenerator.XSDGenerator.Model;
 
 namespace XSDGenerator.Model;
 
-public class XmlIdentityConstraint
+public class XmlIdentityConstraint : XmlAnnotated
 {
 	[XmlAttribute("name")]
 	public string? Name { get; set; }

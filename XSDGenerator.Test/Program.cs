@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 var xml = Assembly.GetExecutingAssembly().GetManifestResourceStream("XSDGenerator.Test.verzoekbericht_4_0_0.xml");
 
-var result = await Parse<verzoekXML>(xml);
+// var result = await Parse<verzoekXML>(xml);
 
 Console.WriteLine();
 

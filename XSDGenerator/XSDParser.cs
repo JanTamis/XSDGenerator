@@ -1,134 +1,110 @@
-using System.Xml;
 using XSDGenerator.Model;
 
 namespace XSDGenerator;
 
 public static class XSDParser
 {
-	public static IElement Convert(XmlElement element)
+	public static string ParseComplexType(XmlComplexType complexType)
 	{
-		return element?.Name switch
-		{
-			"xs:sequence" => GetSequence(element),
-			"xs:annotation" => GetAnnotation(element),
-			"xs:element" => GetElement(element),
-			_ => throw new Exception("Invalid element")
-		};
-	}
-	
-	private static Sequence GetSequence(XmlElement element)
-	{
-		var sequence = new Sequence
-		{
-			Id = element.GetAttribute("id"),
-			MaxOccurs = UInt32.TryParse(element.GetAttribute("maxOccurs"), out var maxOccurs) ? maxOccurs : 1,
-			MinOccurs = UInt32.TryParse(element.GetAttribute("minOccurs"), out var minOccurs) ? minOccurs : 1,
-			Elements = new List<IElement>(),
-		};
+		var name = complexType.Name;
+		var content = complexType.Particle;
 
-		foreach (XmlElement xmlElement in element.ChildNodes)
-		{
-			if (xmlElement.Name == "xs:annotation")
+		var items = ParseParticle(content);
+
+		return $$"""
+			public class {{Titleize(name)}}
 			{
-				sequence.Annotation = GetAnnotation(xmlElement);
+				{{String.Join("\n\n\t", items)}}
+			}
+			""";
+	}
+
+	public static IEnumerable<string> ParseSequence(XmlSequence sequence)
+	{
+		return sequence.Items
+			.SelectMany(ParseParticle);
+	}
+
+	public static IEnumerable<string> ParseChoice(XmlChoice choice)
+	{
+		return choice.Items
+			.SelectMany(ParseParticle);
+	}
+
+	public static IEnumerable<string> ParseElement(XmlElement element)
+	{
+		if (element.SchemaType is null)
+		{
+			yield return $@"[XmlElement(ElementName = ""{element.Name}"")]";
+
+			var ending = " { get; set; }";
+			var typeName = GetFriendlyName(element.SchemaTypeName.Name);
+
+			if (String.IsNullOrEmpty(element.FixedValue))
+			{
+				var fixedValue = element.FixedValue;
+
+				if (typeName == "string")
+				{
+					fixedValue = $"\"{fixedValue}\"";
+				}
+
+				ending = $"{{ get; }} = {fixedValue};";
+			}
+
+			if ((element.MinOccurs != null && element.MinOccurs.Value > 1) ||
+				(element.MaxOccurs != null && element.MaxOccurs.Value > 1))
+			{
+				yield return $"public {typeName}[] {Titleize(element.Name)}{ending}";
 			}
 			else
 			{
-				if (xmlElement.Name is not "xs:any" and not "xs:element" and not "xs:group" and not "xs:choice" and not "xs:sequence")
-				{
-					throw new Exception("Invalid sequence element");
-				}
-				
-				sequence.Elements.Add(Convert(xmlElement));
+				yield return $"public {typeName} {Titleize(element.Name)}{ending}";
 			}
 		}
-		
-		return sequence;
-	}
-	
-	private static Annotation GetAnnotation(XmlElement element)
-	{
-		var annotation = new Annotation
-		{
-			Id = element.GetAttribute("id"),
-			Elements = new List<IElement>(),
-		};
-
-		foreach (XmlElement xmlElement in element.ChildNodes)
-		{
-			if (xmlElement.Name is not "xs:appinfo" and not "xs:documentation")
-			{
-				throw new Exception("Invalid annotation element");
-			}
-			
-			annotation.Elements.Add(Convert(xmlElement));
-		}
-		
-
-		return annotation;
 	}
 
-	private static Element GetElement(XmlElement element)
+	private static IEnumerable<string> ParseParticle(XmlParticle? particle)
 	{
-		var result = new Element
+		return particle switch
 		{
-			Abstract = Boolean.TryParse(element.GetAttribute("abstract"), out var @abstract) ? @abstract : null,
-			Nullable = Boolean.TryParse(element.GetAttribute("nillable"), out var nillable) ? nillable : null,
-			Ref = element.GetAttribute("ref"),
-			SubstitutionGroup = element.GetAttribute("substitutionGroup"),
-			MaxOccurs = UInt32.TryParse(element.GetAttribute("maxOccurs"), out var maxOccurs) ? maxOccurs : 1,
-			MinOccurs = UInt32.TryParse(element.GetAttribute("minOccurs"), out var minOccurs) ? minOccurs : 1,
-			Id = element.GetAttribute("id"),
-			Name = element.GetAttribute("name"),
-			Default = element.GetAttribute("default"),
-			Fixed = element.GetAttribute("fixed"),
-			Type = element.GetAttribute("type"),
+			XmlSequence sequence => ParseSequence(sequence),
+			XmlElement element => ParseElement(element),
+			XmlChoice choice => ParseChoice(choice),
+			_ => Enumerable.Empty<string>(),
 		};
-		
-		foreach (XmlElement xmlElement in element.ChildNodes)
-		{
-			switch (xmlElement.Name)
-			{
-				case "xs:annotation":
-					result.Annotation = GetAnnotation(xmlElement);
-					break;
-				case "xs:complexType":
-					result.ComplexOrSimpleType = GetComplexType(xmlElement);
-					break;
-				case "xs:simpleType":
-					result.ComplexOrSimpleType = GetSimpleType(xmlElement);
-					break;
-				default:
-					throw new Exception("Invalid element");
-			}
-		}
-
-		return result;
 	}
-	
-	private static SimpleType GetSimpleType(XmlElement element)
-	{
-		var result = new SimpleType
-		{
-			Id = element.GetAttribute("id"),
-			Name = element.GetAttribute("name"),
-		};
 
-		foreach (XmlElement xmlElement in element.ChildNodes)
+	private static string? Titleize(string? source)
+	{
+		if (String.IsNullOrEmpty(source) || Char.IsUpper(source![0]))
 		{
-			switch (xmlElement.Name)
-			{
-				case "xs:annotation":
-					result.Annotation = GetAnnotation(xmlElement);
-					break;
-				// case "xs:restriction":
-				// 	result.Content = GetRestriction(xmlElement);
-				// 	break;
-				default:
-					throw new Exception("Invalid element");
-			}
+			return source;
 		}
 
-		return result;
+		return Char.ToUpper(source[0]) + source.Substring(1);
+	}
+
+	private static string GetFriendlyName(string type)
+	{
+		if (type.IndexOf(':') is var index and > -1)
+		{
+			type = type.Substring(index);
+		}
+
+		if (type is not "int" 
+			and not "short" 
+			and not "byte" 
+			and not "bool" 
+			and not "long" 
+			and not "float" 
+			and not "double" 
+			and not "decimal" 
+			and not "string")
+		{
+			type = Titleize(type) ?? String.Empty;
+		}
+
+		return type;
 	}
 }

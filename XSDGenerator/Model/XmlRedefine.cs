@@ -1,3 +1,5 @@
+using System.Xml.Serialization;
+
 namespace XSDGenerator.Model;
 
 public class XmlRedefine : XmlExternal

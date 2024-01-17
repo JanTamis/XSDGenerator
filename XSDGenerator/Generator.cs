@@ -1,9 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 using System.Collections.Immutable;
-using System.Globalization;
-using System.Text;
-using System.Xml.Schema;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+using XSDGenerator.Model;
 
 namespace XSDGenerator;
 
@@ -38,80 +35,20 @@ public class Generator : IIncrementalGenerator
 
 	public IEnumerable<string> ParseFile(string file)
 	{
-		var document = XmlParser.Parse(file);
-		var root = XmlParser.GetSchema(document);
+		var schema = XmlParser.Parse(file);
 
-		foreach (var complexType in XmlParser.GetComplexTypes(root))
+		if (schema == null)
 		{
-			var properties = XmlParser.GetElements(XmlParser.GetSequence(complexType))
-				.Select(XmlParser.GetProperty)
-				.Concat(XmlParser.GetChoice(XmlParser.GetSequence(complexType)).Select(XmlParser.GetChoiceProperty))
-				.Concat(XmlParser.GetSimpleContent(complexType).SelectMany(XmlParser.GetAttributes).Select(XmlParser.GetProperty));
-
-			var name = XmlParser.GetName(complexType);
-
-			yield return $$"""
-				public class {{name}}
-				{
-					{{String.Join("\n\n\t", properties)}}
-				}
-				""";
+			yield break;
 		}
 
-		foreach (var simpleType in XmlParser.GetSimpleTypes(root))
+		foreach (var item in schema.Items)
 		{
-			var restriction = XmlParser.GetRestriction(simpleType);
-			var enumeration = XmlParser.GetEnumeration(restriction);
-			var name = Titleize(XmlParser.GetName(simpleType));
-
-			if (enumeration.Any())
+			yield return item switch
 			{
-				yield return $$"""
-					public enum {{Titleize(name)}}
-					{
-						{{String.Join("\n\n\t", enumeration.Select(XmlParser.GetEnumProperty))}}
-					}
-					""";
-			}
+				XmlComplexType complexType => XSDParser.ParseComplexType(complexType),
+				_ => String.Empty,
+			};
 		}
-	}
-
-	private static string Titleize(string source)
-	{
-		if (String.IsNullOrEmpty(source) || Char.IsUpper(source[0]))
-		{
-			return source;
-		}
-
-		return Char.ToUpper(source[0]) + source.Substring(1);
-	}
-
-	public static string GetFriendlyName(Type type)
-	{
-		if (type == typeof(int))
-			return "int";
-		if (type == typeof(short))
-			return "short";
-		if (type == typeof(byte))
-			return "byte";
-		if (type == typeof(bool))
-			return "bool";
-		if (type == typeof(long))
-			return "long";
-		if (type == typeof(float))
-			return "float";
-		if (type == typeof(double))
-			return "double";
-		if (type == typeof(decimal))
-			return "decimal";
-		if (type == typeof(string))
-			return "string";
-		
-		if (type.IsGenericType)
-		{
-			return $"{type.Name.Split('`')[0]}<{String.Join(", ", type.GetGenericArguments().Select(GetFriendlyName))}>";
-		}
-
-		return type.Name;
 	}
 }

@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Xml.Serialization;
+using XSDGenerator.XSDGenerator.Model;
 
 namespace XSDGenerator.Model;
 

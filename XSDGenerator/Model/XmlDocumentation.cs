@@ -12,5 +12,5 @@ public class XmlDocumentation : IElement
 	public string? Language { get; set; }
 
 	[XmlText, XmlAnyElement]
-	public XmlNode?[]? Markup { get; set; }
+	public IList<XmlNode?>? Markup { get; set; }
 }

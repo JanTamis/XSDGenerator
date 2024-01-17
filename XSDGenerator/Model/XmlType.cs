@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Xml.Schema;
 using System.Xml.Serialization;
 
 namespace XSDGenerator.Model;
