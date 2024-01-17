@@ -26,7 +26,7 @@ public class XmlSchema : IElement
 	[XmlElement("include", typeof(XmlInclude))]
 	[XmlElement("import", typeof(XmlImport))]
 	[XmlElement("redefine", typeof(XmlRedefine))]
-	public IList<XmlExternal> Includes { get; set; }
+	public XmlExternal[] Includes { get; set; }
 
 	[XmlElement("annotation", typeof(XmlAnnotation))]
 	[XmlElement("attribute", typeof(XmlAttribute))]
@@ -36,11 +36,11 @@ public class XmlSchema : IElement
 	[XmlElement("element", typeof(XmlElement))]
 	[XmlElement("group", typeof(XmlGroup))]
 	[XmlElement("notation", typeof(XmlNotation))]
-	public IList<IElement> Items { get; set; }
+	public IElement[] Items { get; set; }
 
 	[XmlAttribute("id", DataType = "ID")]
 	public string? Id { get; set; }
 
 	[XmlAnyAttribute]
-	public IList<XmlAttribute>? UnhandledAttributes { get; set; }
+	public XmlAttribute[]? UnhandledAttributes { get; set; }
 }

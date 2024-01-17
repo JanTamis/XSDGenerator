@@ -9,5 +9,5 @@ public class XmlAppInfo : IElement
 	public string? Source { get; set; }
 
 	[XmlText, XmlAnyElement]
-	public IList<XmlNode?>? Markup { get; set; }
+	public XmlNode?[]? Markup { get; set; }
 }

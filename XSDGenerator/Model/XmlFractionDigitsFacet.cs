@@ -2,8 +2,8 @@
 
 public class XmlFractionDigitsFacet : XmlNumericFacet
 {
-    public XmlFractionDigitsFacet()
-    {
-        FacetType = FacetType.FractionDigits;
-    }
+	public XmlFractionDigitsFacet()
+	{
+		FacetType = FacetType.FractionDigits;
+	}
 }

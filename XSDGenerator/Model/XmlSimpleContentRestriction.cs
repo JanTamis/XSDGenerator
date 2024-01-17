@@ -23,11 +23,11 @@ public class XmlSimpleContentRestriction : XmlContent
 	[XmlElement("totalDigits", typeof(XmlTotalDigitsFacet))]
 	[XmlElement("fractionDigits", typeof(XmlFractionDigitsFacet))]
 	[XmlElement("whiteSpace", typeof(XmlWhiteSpaceFacet))]
-	public IList<XmlFacet> Facets { get; set; }
+	public XmlFacet[] Facets { get; set; }
 
 	[XmlElement("attribute", typeof(XmlAttribute))]
 	[XmlElement("attributeGroup", typeof(XmlAttributeGroupRef))]
-	public IList<XmlAnnotated> Attributes { get; }
+	public XmlAnnotated[] Attributes { get; }
 
 	[XmlElement("anyAttribute")]
 	public XmlAnyAttribute? AnyAttribute { get; set; }

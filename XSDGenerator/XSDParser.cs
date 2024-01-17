@@ -1,10 +1,10 @@
-using XSDGenerator.Model;
+using System.Xml.Schema;
 
 namespace XSDGenerator;
 
 public static class XSDParser
 {
-	public static string ParseComplexType(XmlComplexType complexType)
+	public static string ParseComplexType(XmlSchemaComplexType complexType)
 	{
 		var name = complexType.Name;
 		var content = complexType.Particle;
@@ -14,63 +14,68 @@ public static class XSDParser
 		return $$"""
 			public class {{Titleize(name)}}
 			{
-				{{String.Join("\n\n\t", items)}}
+			{{String.Join("\n\n", items)}}
 			}
 			""";
 	}
 
-	public static IEnumerable<string> ParseSequence(XmlSequence sequence)
+	public static IEnumerable<string> ParseSequence(XmlSchemaSequence sequence)
 	{
 		return sequence.Items
+			.Cast<XmlSchemaParticle>()
 			.SelectMany(ParseParticle);
 	}
 
-	public static IEnumerable<string> ParseChoice(XmlChoice choice)
+	public static IEnumerable<string> ParseChoice(XmlSchemaChoice choice)
 	{
 		return choice.Items
+			.Cast<XmlSchemaParticle>()
 			.SelectMany(ParseParticle);
 	}
 
-	public static IEnumerable<string> ParseElement(XmlElement element)
+	public static IEnumerable<string> ParseElement(XmlSchemaElement element)
 	{
 		if (element.SchemaType is null)
 		{
-			yield return $@"[XmlElement(ElementName = ""{element.Name}"")]";
-
 			var ending = " { get; set; }";
 			var typeName = GetFriendlyName(element.SchemaTypeName.Name);
 
-			if (String.IsNullOrEmpty(element.FixedValue))
+			// if (String.IsNullOrEmpty(element.FixedValue))
+			// {
+			// 	var fixedValue = element.FixedValue;
+			//
+			// 	if (typeName == "string")
+			// 	{
+			// 		fixedValue = $"\"{fixedValue}\"";
+			// 	}
+			//
+			// 	ending = $"{{ get; }} = {fixedValue};";
+			// }
+
+			if (element.MinOccurs > 1 || element.MaxOccurs > 1)
 			{
-				var fixedValue = element.FixedValue;
-
-				if (typeName == "string")
-				{
-					fixedValue = $"\"{fixedValue}\"";
-				}
-
-				ending = $"{{ get; }} = {fixedValue};";
-			}
-
-			if ((element.MinOccurs != null && element.MinOccurs.Value > 1) ||
-				(element.MaxOccurs != null && element.MaxOccurs.Value > 1))
-			{
-				yield return $"public {typeName}[] {Titleize(element.Name)}{ending}";
+				yield return $"""
+						[XmlElement(ElementName = "{element.Name}")]
+						public {typeName}[] {Titleize(element.Name)}{ending}
+					""";
 			}
 			else
 			{
-				yield return $"public {typeName} {Titleize(element.Name)}{ending}";
+				yield return $"""
+						[XmlElement(ElementName = "{element.Name}")]
+						public {typeName} {Titleize(element.Name)}{ending}
+					""";
 			}
 		}
 	}
 
-	private static IEnumerable<string> ParseParticle(XmlParticle? particle)
+	private static IEnumerable<string> ParseParticle(XmlSchemaParticle? particle)
 	{
 		return particle switch
 		{
-			XmlSequence sequence => ParseSequence(sequence),
-			XmlElement element => ParseElement(element),
-			XmlChoice choice => ParseChoice(choice),
+			XmlSchemaSequence sequence => ParseSequence(sequence),
+			XmlSchemaElement element => ParseElement(element),
+			XmlSchemaChoice choice => ParseChoice(choice),
 			_ => Enumerable.Empty<string>(),
 		};
 	}

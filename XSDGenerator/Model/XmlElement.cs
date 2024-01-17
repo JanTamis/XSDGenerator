@@ -48,5 +48,5 @@ public class XmlElement : XmlParticle
 	[XmlElement("key", typeof(XmlKey))]
 	[XmlElement("keyref", typeof(XmlKeyref))]
 	[XmlElement("unique", typeof(XmlUnique))]
-	public IList<XmlIdentityConstraint> Constraints { get; set; }
+	public XmlIdentityConstraint[] Constraints { get; set; }
 }

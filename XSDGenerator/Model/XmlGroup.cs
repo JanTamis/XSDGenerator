@@ -10,5 +10,5 @@ public class XmlGroup : XmlAnnotated
 	[XmlElement("choice", typeof(XmlChoice))]
 	[XmlElement("all", typeof(XmlAll))]
 	[XmlElement("sequence", typeof(XmlSequence))]
-	public IList<XmlParticle>? Particle { get; set; }
+	public XmlParticle[]? Particle { get; set; }
 }

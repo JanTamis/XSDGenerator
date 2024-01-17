@@ -1,5 +1,5 @@
+using System.Xml.Schema;
 using System.Xml.Serialization;
-using XSDGenerator.Model;
 
 namespace XSDGenerator;
 
@@ -12,7 +12,7 @@ public static class XmlParser
 	/// <returns>An XmlDocument that represents the provided XML string.</returns>
 	public static XmlSchema? Parse(string xml)
 	{
-		var serializer = new XmlSerializer(typeof(XmlSchema));
+		var serializer = new XmlSerializer(typeof(System.Xml.Schema.XmlSchema));
 
 		return serializer.Deserialize(new StringReader(xml)) as XmlSchema;
 	}

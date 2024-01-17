@@ -4,8 +4,8 @@ namespace XSDGenerator.XSDGenerator.Model;
 
 public class XmlMaxExclusiveFacet : XmlFacet
 {
-    public XmlMaxExclusiveFacet()
-    {
-        FacetType = FacetType.MaxExclusive;
-    }
+	public XmlMaxExclusiveFacet()
+	{
+		FacetType = FacetType.MaxExclusive;
+	}
 }

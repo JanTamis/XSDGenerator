@@ -2,8 +2,8 @@
 
 public class XmlLengthFacet : XmlNumericFacet
 {
-    public XmlLengthFacet()
-    {
-        FacetType = FacetType.Length;
-    }
+	public XmlLengthFacet()
+	{
+		FacetType = FacetType.Length;
+	}
 }

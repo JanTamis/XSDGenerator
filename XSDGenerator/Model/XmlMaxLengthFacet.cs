@@ -2,8 +2,8 @@
 
 public class XmlMaxLengthFacet : XmlNumericFacet
 {
-    public XmlMaxLengthFacet()
-    {
-        FacetType = FacetType.MaxLength;
-    }
+	public XmlMaxLengthFacet()
+	{
+		FacetType = FacetType.MaxLength;
+	}
 }

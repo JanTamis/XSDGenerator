@@ -1,5 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 using System.Collections.Immutable;
+using System.Xml.Schema;
 using XSDGenerator.Model;
 
 namespace XSDGenerator;
@@ -28,7 +29,7 @@ public class Generator : IIncrementalGenerator
 				using System;
 				using System.Xml.Serialization;
 				
-				{String.Join("\n\n", classes)}
+				{String.Join("\n\n", classes.Where(w => !String.IsNullOrEmpty(w)))}
 				""");
 		}
 	}
@@ -46,7 +47,7 @@ public class Generator : IIncrementalGenerator
 		{
 			yield return item switch
 			{
-				XmlComplexType complexType => XSDParser.ParseComplexType(complexType),
+				XmlSchemaComplexType complexType => XSDParser.ParseComplexType(complexType),
 				_ => String.Empty,
 			};
 		}

@@ -4,8 +4,8 @@ namespace XSDGenerator.XSDGenerator.Model;
 
 public class XmlEnumerationFacet : XmlFacet
 {
-    public XmlEnumerationFacet()
-    {
-        FacetType = FacetType.Enumeration;
-    }
+	public XmlEnumerationFacet()
+	{
+		FacetType = FacetType.Enumeration;
+	}
 }

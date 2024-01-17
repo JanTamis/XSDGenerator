@@ -2,8 +2,8 @@
 
 public class XmlTotalDigitsFacet : XmlNumericFacet
 {
-    public XmlTotalDigitsFacet()
-    {
-        FacetType = FacetType.TotalDigits;
-    }
+	public XmlTotalDigitsFacet()
+	{
+		FacetType = FacetType.TotalDigits;
+	}
 }

@@ -2,8 +2,8 @@
 
 public class XmlMinLengthFacet : XmlNumericFacet
 {
-    public XmlMinLengthFacet()
-    {
-        FacetType = FacetType.MinLength;
-    }
+	public XmlMinLengthFacet()
+	{
+		FacetType = FacetType.MinLength;
+	}
 }

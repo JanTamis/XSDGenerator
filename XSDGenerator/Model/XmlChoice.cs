@@ -9,5 +9,5 @@ public class XmlChoice : XmlParticle
 	[XmlElement("choice", typeof(XmlChoice))]
 	[XmlElement("sequence", typeof(XmlSequence))]
 	[XmlElement("any", typeof(XmlAny))]
-	public IList<XmlParticle> Items { get; set; }
+	public XmlParticle[] Items { get; set; }
 }

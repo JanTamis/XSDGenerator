@@ -26,7 +26,7 @@ public class XmlComplexType : XmlType
 
 	[XmlElement("attribute", typeof(XmlAttribute))]
 	[XmlElement("attributeGroup", typeof(XmlAttributeGroupRef))]
-	public IList<XmlAnnotated> Attributes { get; set; }
+	public XmlAnnotated[] Attributes { get; set; }
 
 	[XmlElement("anyAttribute")]
 	public XmlAnyAttribute? AnyAttribute { get; set; }

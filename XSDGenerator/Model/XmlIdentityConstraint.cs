@@ -12,5 +12,5 @@ public class XmlIdentityConstraint : XmlAnnotated
 	public XmlXPath? Selector { get; set; }
 
 	[XmlElement("field", typeof(XmlXPath))]
-	public IList<XmlXPath> Fields { get; set; }
+	public XmlXPath[] Fields { get; set; }
 }

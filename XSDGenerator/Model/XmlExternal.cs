@@ -11,5 +11,5 @@ public class XmlExternal : IElement
 	public string? Id { get; set; }
 
 	[XmlAnyAttribute]
-	public IList<XmlAttribute>? UnhandledAttributes { get; set; }
+	public XmlAttribute[]? UnhandledAttributes { get; set; }
 }

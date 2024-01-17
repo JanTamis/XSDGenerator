@@ -23,5 +23,5 @@ public class XmlSimpleTypeRestriction : XmlSimpleTypeContent
 	 XmlElement("totalDigits", typeof(XmlTotalDigitsFacet)),
 	 XmlElement("fractionDigits", typeof(XmlFractionDigitsFacet)),
 	 XmlElement("whiteSpace", typeof(XmlWhiteSpaceFacet))]
-	public IList<XmlFacet> Facets { get; set; }
+	public XmlFacet[] Facets { get; set; }
 }

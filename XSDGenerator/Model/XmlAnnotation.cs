@@ -9,5 +9,5 @@ public class XmlAnnotation : IElement
 
 	[XmlElement("documentation", typeof(XmlDocumentation))]
 	[XmlElement("appinfo", typeof(XmlAppInfo))]
-	public IList<IElement> Items { get; set; }
+	public IElement[] Items { get; set; }
 }

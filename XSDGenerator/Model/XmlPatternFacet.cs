@@ -4,8 +4,8 @@ namespace XSDGenerator.XSDGenerator.Model;
 
 public class XmlPatternFacet : XmlFacet
 {
-    public XmlPatternFacet()
-    {
-        FacetType = FacetType.Pattern;
-    }
+	public XmlPatternFacet()
+	{
+		FacetType = FacetType.Pattern;
+	}
 }

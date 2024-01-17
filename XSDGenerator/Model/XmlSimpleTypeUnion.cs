@@ -5,5 +5,5 @@ namespace XSDGenerator.Model;
 public class XmlSimpleTypeUnion : XmlSimpleTypeContent
 {
 	[XmlElement("simpleType", typeof(XmlSimpleType))]
-	public IList<XmlSimpleType> BaseTypes { get; }
+	public XmlSimpleType[] BaseTypes { get; }
 }

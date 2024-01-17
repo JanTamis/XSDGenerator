@@ -4,8 +4,8 @@ namespace XSDGenerator.XSDGenerator.Model;
 
 public class XmlMinInclusiveFacet : XmlFacet
 {
-    public XmlMinInclusiveFacet()
-    {
-        FacetType = FacetType.MinInclusive;
-    }
+	public XmlMinInclusiveFacet()
+	{
+		FacetType = FacetType.MinInclusive;
+	}
 }

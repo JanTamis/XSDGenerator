@@ -4,8 +4,8 @@ namespace XSDGenerator.XSDGenerator.Model;
 
 public class XmlWhiteSpaceFacet : XmlFacet
 {
-    public XmlWhiteSpaceFacet()
-    {
-        FacetType = FacetType.Whitespace;
-    }
+	public XmlWhiteSpaceFacet()
+	{
+		FacetType = FacetType.Whitespace;
+	}
 }
