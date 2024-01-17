@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        attributeFormDefault="unqualified"
+        elementFormDefault="qualified"
+        targetNamespace="http://www.omgevingswet.nl/koppelvlak/stam-v4/verzoek"
+        version="4.0.0"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:gml="http://www.opengis.net/gml"
+        xmlns:ic="http://www.omgevingswet.nl/koppelvlak/stam-v4/common"
+        xmlns:vx="http://www.omgevingswet.nl/koppelvlak/stam-v4/verzoek">
+    <xs:import namespace="http://www.opengis.net/gml" schemaLocation="../gml-3.1.1.2/gml/3.1.1/base/gml.xsd"/>
+    <xs:import namespace="http://www.omgevingswet.nl/koppelvlak/stam-v4/common" schemaLocation="common-4.0.xsd"/>
+
+    <xs:complexType name="VerzoekXML">
+        <xs:sequence>
+            <xs:element name="akkoordverklaring" type="xs:string"/>
+            <xs:element name="ambtshalve" type="xs:string"/>
+            <xs:element name="doel" type="ic:DoelVerzoek"/>
+            <xs:element name="indienDatum" type="xs:dateTime"/>
+            <xs:element name="naam" type="ic:PubliceerbaarText"/>
+            <xs:element minOccurs="0" name="referentieAanvrager" type="ic:PubliceerbaarText"/>
+            <xs:element minOccurs="0" name="toelichtingLaterAanTeLeverenInformatie" type="ic:PubliceerbaarText"/>
+            <xs:element minOccurs="0" name="toelichtingNietAanTeLeverenInformatie" type="ic:PubliceerbaarText"/>    
+            <xs:element minOccurs="0" name="toelichtingVerzoek" type="ic:PubliceerbaarText"/>
+            <xs:element name="type" type="ic:TypeVerzoek"/>
+            <xs:element name="verzoeknummer" type="xs:string"/>
+            <xs:element name="volgnummer" type="xs:string"/>
+            <xs:element name="project" type="vx:Project"/>
+            <xs:element name="bevoegdGezag" type="vx:BevoegdGezag"/>
+            <xs:element minOccurs="0" name="bevoegdGezagHistorie" type="vx:BevoegdGezagHistorie"/>
+            <xs:element minOccurs="0" name="uitvoerendeInstantie" type="vx:UitvoerendeInstantie"/>
+            <xs:element minOccurs="0" name="uitvoerendeInstantieHistorie" type="vx:UitvoerendeInstantieHistorie"/>
+            <xs:element minOccurs="0" name="contactpersoon" type="vx:Contactpersoon"/>
+            <xs:element minOccurs="0" name="gemachtigde" type="vx:Gemachtigde"/>
+            <xs:element name="initiatiefnemer" type="vx:Initiatiefnemer"/>
+            <xs:element name="projectlocaties" type="vx:Projectlocaties"/>
+            <xs:element name="projectactiviteiten" type="vx:Projectactiviteiten"/>
+            <xs:element minOccurs="0" name="participatie" type="vx:Participatie"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="verzoekBijlage" type="vx:VerzoekBijlage"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Participatie">
+        <xs:sequence>
+            <xs:element name="geparticipeerd" type="ic:PubliceerbaarBoolean"/>
+            <xs:element minOccurs="0" name="participatieWijze" type="ic:PubliceerbaarText"/>
+            <xs:element minOccurs="0" name="participatieResultaat" type="ic:PubliceerbaarText"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="VerzoekBijlage">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="vraagreferentie" type="xs:string"/>
+            <xs:element name="gevraagdeBijlage" type="vx:GevraagdeBijlage"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Contactpersoon">
+        <xs:sequence>
+            <xs:element name="achternaam" type="ic:PubliceerbaarText"/>
+            <xs:element minOccurs="0" name="emailadres" type="ic:PubliceerbaarText"/>
+            <xs:element minOccurs="0" name="functie" type="ic:PubliceerbaarText"/>
+            <xs:element minOccurs="0" name="telefoonnummer" type="ic:PubliceerbaarText"/>
+            <xs:element name="voorletters" type="ic:PubliceerbaarText"/>
+            <xs:element minOccurs="0" name="voorvoegsel" type="ic:PubliceerbaarText"/>
+            <xs:element minOccurs="0" name="contactadres" type="ic:Contactadres"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Gemachtigde">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="emailadres" type="ic:Antwoord" maxOccurs="2"/>
+            <xs:element minOccurs="0" name="telefoonnummer" type="ic:Antwoord" maxOccurs="2"/>
+            <xs:choice>
+                <xs:element name="natuurlijkPersoon" type="vx:NatuurlijkPersoon"/>
+                <xs:element name="nietNatuurlijkPersoon" type="vx:NietNatuurlijkPersoon"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Initiatiefnemer">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="emailadres" type="ic:Antwoord" maxOccurs="2"/>
+            <xs:element minOccurs="0" name="telefoonnummer" type="ic:Antwoord" maxOccurs="2"/>
+            <xs:choice>
+                <xs:element name="natuurlijkPersoon" type="vx:NatuurlijkPersoon"/>
+                <xs:element name="nietNatuurlijkPersoon" type="vx:NietNatuurlijkPersoon"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="NatuurlijkPersoon">
+        <xs:sequence>
+            <xs:element name="geslachtsnaamNaamgebruik" type="ic:Antwoord" maxOccurs="2"/>
+            <xs:element name="voorlettersNaamgebruik" type="ic:Antwoord" maxOccurs="2"/>
+            <xs:element minOccurs="0" name="burgerservicenummer" type="ic:PubliceerbaarText"/>
+            <xs:element minOccurs="0" name="voorvoegselNaamgebruik" type="ic:Antwoord" maxOccurs="2"/>
+            <xs:element minOccurs="0" name="correspondentieAdres" type="ic:Contactadres"/>
+            <xs:choice>
+                <xs:element minOccurs="0" name="verblijfsadres" type="ic:Binnenlandsadres"/>
+                <xs:element minOccurs="0" name="verblijfsadresBuitenland" type="ic:Buitenlandsadres"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="NietNatuurlijkPersoon">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="rsin" type="ic:Antwoord" maxOccurs="2"/>
+            <xs:element minOccurs="0" name="statutaireNaam" type="ic:Antwoord" maxOccurs="2"/>
+            <xs:element name="kvkNummer" type="ic:Antwoord" maxOccurs="2"/>
+            <xs:element name="handelsnaam" type="ic:Antwoord" maxOccurs="2"/>
+            <xs:element minOccurs="0" name="verkorteHandelsnaam" type="ic:Antwoord" maxOccurs="2"/>
+            <xs:element minOccurs="0" name="postadres" type="ic:Contactadres"/>
+            <xs:choice>
+                <xs:element minOccurs="0" name="bezoekAdres" type="ic:Binnenlandsadres"/>
+                <xs:element minOccurs="0" name="bezoekAdresBuitenland" type="ic:Buitenlandsadres"/>
+            </xs:choice>
+            <xs:element minOccurs="0" name="vestiging" type="ic:Vestiging"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Project">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="naam" type="ic:PubliceerbaarText"/>
+            <xs:element minOccurs="0" name="omschrijving" type="ic:PubliceerbaarText"/>
+            <xs:element minOccurs="0" name="projectId" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Projectlocaties">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="projectlocatie" type="vx:Projectlocatie"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Projectlocatie">
+        <xs:sequence>
+            <xs:element name="coordinatenEtrs" type="ic:CoordinatenEtrs"/>
+            <xs:choice>
+                <xs:element name="coordinatenOpgegeven" type="vx:CoordinatenOpgegeven"/>
+                <xs:element name="adresaanduiding" type="vx:Adresaanduiding"/>
+                <xs:element name="kadastraleAanduiding" type="vx:KadastraleAanduiding"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BevoegdGezag">
+        <xs:sequence>
+            <xs:element name="naam" type="xs:string"/>
+            <xs:element name="oin" type="xs:string"/>
+            <xs:element name="tijdvakGeldigheid" type="vx:TijdvakGeldigheid"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BevoegdGezagHistorie">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="bevoegdGezag" type="vx:BevoegdGezag"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="UitvoerendeInstantie">
+        <xs:sequence>
+            <xs:element name="naam" type="xs:string"/>
+            <xs:element name="oin" type="xs:string"/>
+            <xs:element name="tijdvakGeldigheid" type="vx:TijdvakGeldigheid"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="UitvoerendeInstantieHistorie">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="uitvoerendeInstantie" type="vx:UitvoerendeInstantie"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TijdvakGeldigheid">
+        <xs:sequence>
+            <xs:element name="beginGeldigheid" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="eindGeldigheid" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CoordinatenOpgegeven">
+        <xs:sequence>
+<!--            <xs:element minOccurs="0" name="puntlocatie" type="gml:PointType"/>-->
+            <xs:element name="referentiestelsel" type="ic:Referentiestelsels"/>
+<!--            <xs:element minOccurs="0" name="vlaklocatie" type="gml:MultiSurfaceType"/>-->
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Adresaanduiding">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="identificatiecodeNummeraanduiding" type="xs:string"/>
+            <xs:element minOccurs="0" name="opgegevenAdresHuisletter" type="xs:string"/>
+            <xs:element minOccurs="0" name="opgegevenAdresHuisnummer" type="xs:string"/>
+            <xs:element minOccurs="0" name="opgegevenAdresHuisnummerToevoeging" type="xs:string"/>
+            <xs:element minOccurs="0" name="opgegevenAdresPostcode" type="xs:string"/>
+            <xs:element minOccurs="0" name="opgegevenAdresStraatnaam" type="xs:string"/>
+            <xs:element minOccurs="0" name="opgegevenAdresWoonplaatsNaam" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="KadastraleAanduiding">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="BRKIdentificatie" type="xs:string"/>
+            <xs:element minOccurs="0" name="kadastraalPerceelnummer" type="xs:string"/>
+            <xs:element minOccurs="0" name="kadastraleGemeente" type="xs:string"/>
+            <xs:element minOccurs="0" name="kadastraleSectie" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Projectactiviteiten">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="projectactiviteit" type="vx:Projectactiviteit"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Projectactiviteit">
+        <xs:sequence>
+            <xs:element name="activiteitId" type="xs:string"/>
+            <xs:element name="imowId" type="xs:string"/>
+            <xs:element name="activiteitnaam" type="xs:string"/>
+            <xs:element name="volgnummer" type="xs:string"/>
+            <xs:element minOccurs="0" name="specificaties" type="vx:Specificaties"/>
+            <xs:element minOccurs="0" name="onderliggendeActiviteit" type="vx:OnderliggendeActiviteit"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OnderliggendeActiviteit">
+        <xs:sequence>
+            <xs:element name="activiteitId" type="xs:string"/>
+            <xs:element name="imowId" type="xs:string"/>
+            <xs:element name="activiteitnaam" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Specificaties">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="specificatie" type="vx:Specificatie"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Specificatie">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="antwoord" type="xs:string"/>
+            <xs:element minOccurs="0" name="oorspronkelijkAntwoord" type="xs:string"/>
+            <xs:element minOccurs="0" name="vraagclassificatie" type="ic:VraagClassificatie"/>
+            <xs:element name="vraagId" type="xs:string"/>
+            <xs:element minOccurs="0" name="vraagreferentie" type="xs:string"/>
+            <xs:element name="groepering" type="xs:string"/>
+            <xs:element name="vraagtekst" type="xs:string"/>
+            <xs:element name="publiceerbaar" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="gevraagdeBijlage" type="vx:GevraagdeBijlage"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="GevraagdeBijlage">
+        <xs:sequence >
+            <xs:element name="documentsoortDSO" type="xs:string"/>
+            <xs:element minOccurs="0" name="documenttypeGeneriek" type="ic:DocumentTypeGeneriek"/>
+            <xs:element name="potentieelVertrouwelijk" type="xs:boolean"/>
+            <xs:element name="verplicht" type="xs:string"/>
+            <xs:element minOccurs="0" name="documenten" type="vx:Documenten"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Documenten">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="document" type="vx:Document"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Document">
+        <xs:sequence>
+            <xs:element name="bestandsnaam" type="xs:string"/>
+            <xs:element name="documentId" type="xs:string"/>
+            <xs:element name="vertrouwelijk" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

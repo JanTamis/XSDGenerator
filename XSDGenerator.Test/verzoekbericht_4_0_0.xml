@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<verzoekXML version="4.0.0" 
+                 xmlns="http://www.omgevingswet.nl/koppelvlak/stam-v4/IMAM" 
+                 xmlns:vx="http://www.omgevingswet.nl/koppelvlak/stam-v4/verzoek"
+                 xmlns:gml="http://www.opengis.net/gml" 
+                 xmlns:ic="http://www.omgevingswet.nl/koppelvlak/stam-v4/common">
+    <stuurgegevens>
+        <zender>
+            <organisatie>DSO</organisatie>
+            <applicatie>DSO-LV</applicatie>
+        </zender>
+        <tijdstipBericht>2023-07-31T19:50:33.799397500</tijdstipBericht>
+    </stuurgegevens>
+    <verzoek>
+        <vx:akkoordverklaring>true</vx:akkoordverklaring>
+        <vx:ambtshalve>false</vx:ambtshalve>
+        <vx:doel>Initieren</vx:doel>
+        <vx:indienDatum>2023-07-31T13:17:45.251080</vx:indienDatum>
+        <vx:naam publiceerbaar="true">Voorbeeldbestand verzoekbericht conform STAM 4.0</vx:naam>
+        <vx:referentieAanvrager publiceerbaar="false">test1</vx:referentieAanvrager>
+        <vx:toelichtingLaterAanTeLeverenInformatie publiceerbaar="false">N.v.t..</vx:toelichtingLaterAanTeLeverenInformatie>
+        <vx:toelichtingVerzoek publiceerbaar="false">Een goed plan.</vx:toelichtingVerzoek>
+        <vx:type>Aanvraag vergunning</vx:type>
+        <vx:verzoeknummer>2023073100048</vx:verzoeknummer>
+        <vx:volgnummer>000</vx:volgnummer>
+        <vx:project>
+            <vx:naam publiceerbaar="true">Voorbeeldbestand verzoekbericht conform STAM 4.0</vx:naam>
+            <vx:omschrijving publiceerbaar="true">Dit betreft een vergunningaanvraag ingediend door een bedrijf als gemachtigde voor een particuliere initiatiefnemer.</vx:omschrijving>
+            <vx:projectId>f162fe27-5368-4728-a245-af636519e9cf-0</vx:projectId>
+        </vx:project>
+        <vx:bevoegdGezag>
+            <vx:naam>provincie TST_03</vx:naam>
+            <vx:oin>00000099130854102011</vx:oin>
+            <vx:tijdvakGeldigheid>
+                <vx:beginGeldigheid>2023-07-31T13:17:43.623987</vx:beginGeldigheid>
+            </vx:tijdvakGeldigheid>
+        </vx:bevoegdGezag>
+        <vx:uitvoerendeInstantie>
+            <vx:naam>00000099900007060000</vx:naam>
+            <vx:oin>00000099900007060000</vx:oin>
+            <vx:tijdvakGeldigheid>
+                <vx:beginGeldigheid>2023-07-31T13:17:43.623987</vx:beginGeldigheid>
+            </vx:tijdvakGeldigheid>
+        </vx:uitvoerendeInstantie>
+        <vx:contactpersoon>
+            <vx:achternaam publiceerbaar="false">Persoon</vx:achternaam>
+            <vx:emailadres publiceerbaar="false">contact@persoon.nl</vx:emailadres>
+            <vx:functie publiceerbaar="false">Contactpersoon</vx:functie>
+            <vx:voorletters publiceerbaar="false">C.</vx:voorletters>
+            <vx:contactadres>
+                <ic:buitenlandsAdres>
+                    <ic:adresBuitenland1 publiceerbaar="false">Test 1</ic:adresBuitenland1>
+                    <ic:adresBuitenland2 publiceerbaar="false">Test 2</ic:adresBuitenland2>
+                    <ic:land publiceerbaar="false">Belgie</ic:land>
+                </ic:buitenlandsAdres>
+            </vx:contactadres>
+        </vx:contactpersoon>
+        <vx:gemachtigde>
+            <vx:emailadres publiceerbaar="false">gemachtigde@bamsolcom.nl</vx:emailadres>
+            <vx:telefoonnummer publiceerbaar="false">12345678</vx:telefoonnummer>
+            <vx:nietNatuurlijkPersoon>
+                <vx:rsin publiceerbaar="true">992104439</vx:rsin>
+                <vx:kvkNummer publiceerbaar="true">90003365</vx:kvkNummer>
+                <vx:handelsnaam publiceerbaar="true">Free Bamsolcom</vx:handelsnaam>
+                <vx:postadres>
+                    <ic:binnenlandsAdres>
+                        <ic:huisnummer bron="gebruiker" publiceerbaar="true">8</ic:huisnummer>
+                        <ic:huisnummer bron="DSO-LV" publiceerbaar="true">305</ic:huisnummer>
+                        <ic:postcode bron="gebruiker" publiceerbaar="true">7610AA</ic:postcode>
+                        <ic:postcode bron="DSO-LV" publiceerbaar="true">7608TP</ic:postcode>
+                        <ic:straatnaam bron="gebruiker" publiceerbaar="true">Warande</ic:straatnaam>
+                        <ic:straatnaam bron="DSO-LV" publiceerbaar="true">Drakensteyn</ic:straatnaam>
+                        <ic:woonplaatsnaam publiceerbaar="true">Almelo</ic:woonplaatsnaam>
+                    </ic:binnenlandsAdres>
+                </vx:postadres>
+                <vx:bezoekAdres>
+                    <ic:huisnummer publiceerbaar="true">5</ic:huisnummer>
+                    <ic:postcode publiceerbaar="true">7901TG</ic:postcode>
+                    <ic:straatnaam publiceerbaar="true">De Stroom</ic:straatnaam>
+                    <ic:woonplaatsnaam publiceerbaar="true">Hoogeveen</ic:woonplaatsnaam>
+                </vx:bezoekAdres>
+            </vx:nietNatuurlijkPersoon>
+        </vx:gemachtigde>
+        <vx:initiatiefnemer>
+            <vx:emailadres publiceerbaar="false">natuurlijkpersoonmetbinnenlandsverblijfsadres@persoon.nl</vx:emailadres>
+            <vx:telefoonnummer publiceerbaar="false">0612345678</vx:telefoonnummer>
+            <vx:natuurlijkPersoon>
+                <vx:geslachtsnaamNaamgebruik publiceerbaar="false">Binnenlands Verblijfsadres</vx:geslachtsnaamNaamgebruik>
+                <vx:voorlettersNaamgebruik publiceerbaar="false">N.P.</vx:voorlettersNaamgebruik>
+                <vx:burgerservicenummer publiceerbaar="false">12345678</vx:burgerservicenummer>
+                <vx:voorvoegselNaamgebruik publiceerbaar="false">Met</vx:voorvoegselNaamgebruik>
+                <vx:correspondentieAdres>
+                    <ic:afwijkendAdres>
+                        <ic:adrestype publiceerbaar="true">postbusnummer</ic:adrestype>
+                        <ic:nummer publiceerbaar="false">1234</ic:nummer>
+                        <ic:postcode publiceerbaar="false">3333RR</ic:postcode>
+                        <ic:woonplaatsnaam publiceerbaar="false">Rotterdam</ic:woonplaatsnaam>
+                    </ic:afwijkendAdres>
+                </vx:correspondentieAdres>
+                <vx:verblijfsadres>
+                    <ic:huisletter publiceerbaar="false">e</ic:huisletter>
+                    <ic:huisnummer publiceerbaar="false">1</ic:huisnummer>
+                    <ic:huisnummertoevoeging publiceerbaar="false">bis</ic:huisnummertoevoeging>
+                    <ic:postcode publiceerbaar="false">1234AB</ic:postcode>
+                    <ic:straatnaam publiceerbaar="false">Teststraat</ic:straatnaam>
+                    <ic:woonplaatsnaam publiceerbaar="false">Amsterdam</ic:woonplaatsnaam>
+                </vx:verblijfsadres>
+            </vx:natuurlijkPersoon>
+        </vx:initiatiefnemer>
+        <vx:projectlocaties>
+            <vx:projectlocatie>
+                <vx:coordinatenEtrs>
+                    <ic:puntlocatie>
+                        <gml:pos srsName="urn:ogc:def:crs:EPSG::4258">52.80657237 4.438095384</gml:pos>
+                    </ic:puntlocatie>
+                    <ic:referentiestelsel>ETRS89</ic:referentiestelsel>
+                </vx:coordinatenEtrs>
+                <vx:coordinatenOpgegeven>
+                    <vx:puntlocatie>
+                        <gml:pos srsName="urn:ogc:def:crs:EPSG::28992">91000.0 535900.0</gml:pos>
+                    </vx:puntlocatie>
+                    <vx:referentiestelsel>RD</vx:referentiestelsel>
+                </vx:coordinatenOpgegeven>
+            </vx:projectlocatie>
+        </vx:projectlocaties>
+        <vx:projectactiviteiten>
+            <vx:projectactiviteit>
+                <vx:activiteitId>http://toepasbare-regels.omgevingswet.overheid.nl/00000099130854102011/id/concept/IndieningsvereistenVergunningnl.imow-pv63.activiteit.OOW1KapstokActiviteitKetenTest</vx:activiteitId>
+                <vx:imowId>nl.imow-pv63.activiteit.OOW1KapstokActiviteitKetenTest</vx:imowId>
+                <vx:activiteitnaam>Tijdelijke Ketentest Kapstok Activiteit in een omgevingsverordening van Provincie Testeiland TST_03</vx:activiteitnaam>
+                <vx:volgnummer>1</vx:volgnummer>
+                <vx:specificaties>
+                    <vx:specificatie>
+                        <vx:antwoord>Olie, 20 kubieke meter en ondergronds</vx:antwoord>
+                        <vx:vraagclassificatie>activiteit</vx:vraagclassificatie>
+                        <vx:vraagId>10028</vx:vraagId>
+                        <vx:groepering>Vragengroep Aanvragen vergunning vloeistoffen in opslagtank</vx:groepering>
+                        <vx:vraagtekst>Geef van iedere opslagtank aan welk soort vloeistof wordt opgeslagen, hoe groot de opslagtank tankcontainer of verpakking (in kubieke meters) is en of het een boven- of een ondergrondse opslagtank betreft.</vx:vraagtekst>
+                        <vx:publiceerbaar>true</vx:publiceerbaar>
+                    </vx:specificatie>
+                    <vx:specificatie>
+                        <vx:antwoord>Opslaan van vloeibare gevaarlijke stoffen van ADR-klasse 6.1</vx:antwoord>
+                        <vx:vraagclassificatie>activiteit</vx:vraagclassificatie>
+                        <vx:vraagId>10027</vx:vraagId>
+                        <vx:groepering>Vragengroep Aanvragen vergunning specifieke vloeistoffen opslagtank</vx:groepering>
+                        <vx:vraagtekst>Geef aan welke situatie op uw opslagtank van toepassing is. Selecteer alle opties die van toepassing zijn.</vx:vraagtekst>
+                        <vx:publiceerbaar>true</vx:publiceerbaar>
+                    </vx:specificatie>
+                    <vx:specificatie>
+                        <vx:antwoord>true</vx:antwoord>
+                        <vx:vraagclassificatie>activiteit</vx:vraagclassificatie>
+                        <vx:vraagId>10030</vx:vraagId>
+                        <vx:groepering>activity</vx:groepering>
+                        <vx:vraagtekst>Maatregelen voorkomen bodemverontreiniging</vx:vraagtekst>
+                        <vx:publiceerbaar>true</vx:publiceerbaar>
+                        <vx:gevraagdeBijlage>
+                            <vx:documentsoortDSO>Maatregelen voorkomen bodemverontreiniging</vx:documentsoortDSO>
+                            <vx:documenttypeGeneriek>Overig</vx:documenttypeGeneriek>
+                            <vx:potentieelVertrouwelijk>false</vx:potentieelVertrouwelijk>
+                            <vx:verplicht>false</vx:verplicht>
+                            <vx:documenten>
+                                <vx:document>
+                                    <vx:bestandsnaam>doc.doc</vx:bestandsnaam>
+                                    <vx:documentId>a4de8bfd25d4516c8d5ddc9477366ec7e95ba8b46af9f2fc0a042b40c80e7a7d</vx:documentId>
+                                    <vx:vertrouwelijk>false</vx:vertrouwelijk>
+                                </vx:document>
+                            </vx:documenten>
+                        </vx:gevraagdeBijlage>
+                    </vx:specificatie>
+                    <vx:specificatie>
+                        <vx:antwoord>true</vx:antwoord>
+                        <vx:vraagclassificatie>activiteit</vx:vraagclassificatie>
+                        <vx:vraagId>10031</vx:vraagId>
+                        <vx:groepering>activity</vx:groepering>
+                        <vx:vraagtekst>Emissies zeer zorgwekkende stoffen in de lucht</vx:vraagtekst>
+                        <vx:publiceerbaar>true</vx:publiceerbaar>
+                        <vx:gevraagdeBijlage>
+                            <vx:documentsoortDSO>Emissies zeer zorgwekkende stoffen in de lucht</vx:documentsoortDSO>
+                            <vx:documenttypeGeneriek>Overig</vx:documenttypeGeneriek>
+                            <vx:potentieelVertrouwelijk>false</vx:potentieelVertrouwelijk>
+                            <vx:verplicht>false</vx:verplicht>
+                            <vx:documenten>
+                                <vx:document>
+                                    <vx:bestandsnaam>logo.png</vx:bestandsnaam>
+                                    <vx:documentId>63d740338a8221afd596ff40ffa747d29c96e020b1ad1dd18eec82bc0534c9a0</vx:documentId>
+                                    <vx:vertrouwelijk>false</vx:vertrouwelijk>
+                                </vx:document>
+                            </vx:documenten>
+                        </vx:gevraagdeBijlage>
+                    </vx:specificatie>
+                </vx:specificaties>
+                <vx:onderliggendeActiviteit>
+                    <vx:activiteitId>http://toepasbare-regels.omgevingswet.overheid.nl/00000099130854102011/id/concept/IndieningsvereistenVergunningnl.imow-pv63.activiteit.OOW1ActiviteitKetenTest1</vx:activiteitId>
+                    <vx:imowId>nl.imow-pv63.activiteit.OOW1ActiviteitKetenTest1</vx:imowId>
+                    <vx:activiteitnaam>Tijdelijke Ketentest Activiteit 1 in een omgevingsverordening van Provincie Testeiland TST_03</vx:activiteitnaam>
+                </vx:onderliggendeActiviteit>
+            </vx:projectactiviteit>
+        </vx:projectactiviteiten>
+        <vx:participatie>
+            <vx:geparticipeerd publiceerbaar="true">true</vx:geparticipeerd>
+            <vx:participatieWijze publiceerbaar="false">Bewonersbijeenkomst georganiseerd.</vx:participatieWijze>
+            <vx:participatieResultaat publiceerbaar="false">Iedereen was enthousiast.</vx:participatieResultaat>
+        </vx:participatie>
+        <vx:verzoekBijlage>
+            <vx:vraagreferentie>mnre1034:Verzoek.BijlageLocatie</vx:vraagreferentie>
+            <vx:gevraagdeBijlage>
+                <vx:documentsoortDSO>Voeg als bijlage toe: gegevens over de grens van de locatie waar u de activiteiten gaat uitvoeren.</vx:documentsoortDSO>
+                <vx:documenttypeGeneriek>Overig</vx:documenttypeGeneriek>
+                <vx:potentieelVertrouwelijk>true</vx:potentieelVertrouwelijk>
+                <vx:verplicht>false</vx:verplicht>
+                <vx:documenten>
+                    <vx:document>
+                        <vx:bestandsnaam>test.pdf</vx:bestandsnaam>
+                        <vx:documentId>3cb9bba60e06c4c7ee00f2c07ef6252fdceb4c83f7619b59ec64491c2d1e0908</vx:documentId>
+                        <vx:vertrouwelijk>true</vx:vertrouwelijk>
+                    </vx:document>
+                </vx:documenten>
+            </vx:gevraagdeBijlage>
+        </vx:verzoekBijlage>
+    </verzoek>
+</verzoekXML>
