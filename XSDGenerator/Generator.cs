@@ -2,6 +2,7 @@
 using System.Collections.Immutable;
 using System.Xml.Schema;
 using XSDGenerator.Model;
+using System.Linq;
 
 namespace XSDGenerator;
 
@@ -40,16 +41,20 @@ public class Generator : IIncrementalGenerator
 
 		if (schema == null)
 		{
-			yield break;
+			return Enumerable.Empty<string>();
 		}
 
-		foreach (var item in schema.Items)
-		{
-			yield return item switch
+		return schema.Items
+			.Cast<object>()
+			.SelectMany(s =>
 			{
-				XmlSchemaComplexType complexType => XSDParser.ParseComplexType(complexType),
-				_ => String.Empty,
-			};
-		}
+				return s switch
+				{
+					XmlSchemaComplexType complexType => XSDParser.ParseComplexType(complexType),
+					XmlSchemaSimpleType simpleType => XSDParser.ParseSimpleType(simpleType),
+					XmlSchemaElement element => XSDParser.ParseElement(element),
+					_ => Enumerable.Empty<string>(),
+				};
+			});
 	}
 }

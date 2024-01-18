@@ -8,18 +8,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\XSDGenerator\XSDGenerator.csproj"
-                        ReferenceOutputAssembly="false"
-                        OutputItemType="Analyzer"/>
+      <ProjectReference Include="..\XSDGenerator\XSDGenerator.csproj" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="verzoek-4.0.xsd" />
-      <AdditionalFiles Include="verzoek-4.0.xsd" />
+      <None Remove="XSD\geometryAggregates.xsd" />
+      <AdditionalFiles Include="XSD\geometryAggregates.xsd" />
+      <AdditionalFiles Include="XSD\verzoek-4.0.xsd" />
       <None Remove="common-4.0.xsd" />
-      <AdditionalFiles Include="common-4.0.xsd" />
+      <AdditionalFiles Include="XSD\common-4.0.xsd" />
       <None Remove="imam-4.0.xsd" />
-      <AdditionalFiles Include="imam-4.0.xsd" />
+      <AdditionalFiles Include="XSD\imam-4.0.xsd" />
     </ItemGroup>
 
     <ItemGroup>

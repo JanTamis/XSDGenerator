@@ -20,9 +20,9 @@
 
     <xs:complexType name="CoordinatenEtrs">
         <xs:sequence>
-<!--            <xs:element minOccurs="0" name="puntlocatie" type="gml:PointType"/>-->
+            <xs:element minOccurs="0" name="puntlocatie" type="gml:PointType"/>
             <xs:element name="referentiestelsel" type="ic:Referentiestelsels"/>
-<!--            <xs:element minOccurs="0" name="vlaklocatie" type="gml:MultiSurfaceType"/>-->
+            <xs:element minOccurs="0" name="vlaklocatie" type="gml:MultiSurfaceType"/>
         </xs:sequence>
     </xs:complexType>
 
