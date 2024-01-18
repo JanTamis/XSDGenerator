@@ -18,9 +18,9 @@ public static class XSDParser
 				.SelectMany(ParseAttribute));
 
 		var documentation = complexType.Annotation?.Items is not null
-			? String.Join("\n///", complexType.Annotation.Items
+			? String.Join("\n", complexType.Annotation.Items
 					.OfType<XmlSchemaDocumentation>()
-					.SelectMany(s => s.Markup.Select(x => x.InnerText)))
+					.SelectMany(s => s.Markup.Select(x => "/// " + x.InnerText.Replace("\n", "\n/// "))))
 			: String.Empty;
 
 		var isAbstract = complexType.IsAbstract;
@@ -36,7 +36,7 @@ public static class XSDParser
 		{
 			yield return $$"""
 				/// <summary>
-				/// {{documentation}}
+				{{documentation}}
 				/// </summary>
 				public{{extraData}} class {{name}}
 				{

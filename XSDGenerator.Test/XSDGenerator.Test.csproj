@@ -14,7 +14,6 @@
     <ItemGroup>
       <None Remove="verzoek-4.0.xsd" />
       <None Remove="XSD\geometryAggregates.xsd" />
-      <AdditionalFiles Include="XSD\geometryAggregates.xsd" />
       <AdditionalFiles Include="XSD\verzoek-4.0.xsd" />
       <None Remove="common-4.0.xsd" />
       <AdditionalFiles Include="XSD\common-4.0.xsd" />

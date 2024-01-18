@@ -1,166 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema
-        attributeFormDefault="unqualified"
-        elementFormDefault="qualified"
-        targetNamespace="http://www.omgevingswet.nl/koppelvlak/stam-v4/common"
-        version="4.0.0"
-        xmlns:xs="http://www.w3.org/2001/XMLSchema"
-        xmlns:gml="http://www.opengis.net/gml"
-        xmlns:ic="http://www.omgevingswet.nl/koppelvlak/stam-v4/common">
-    <xs:import namespace="http://www.opengis.net/gml" schemaLocation="../gml-3.1.1.2/gml/3.1.1/base/gml.xsd"/>
+				attributeFormDefault="unqualified"
+				elementFormDefault="qualified"
+				targetNamespace="http://www.omgevingswet.nl/koppelvlak/stam-v4/common"
+				version="4.0.0"
+				xmlns:xs="http://www.w3.org/2001/XMLSchema"
+				xmlns:gml="http://www.opengis.net/gml"
+				xmlns:ic="http://www.omgevingswet.nl/koppelvlak/stam-v4/common">
+	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="../gml-3.1.1.2/gml/3.1.1/base/gml.xsd"/>
 
-    <xs:complexType name="Vestiging">
-        <xs:sequence>
-            <xs:element minOccurs="0" name="vestigingsnummer" type="ic:Antwoord" maxOccurs="2"/>
-            <xs:element minOccurs="0" name="postadres" type="ic:Contactadres"/>
-            <xs:element minOccurs="0" name="locatieAdresVestiging" type="ic:Binnenlandsadres"/>
-            <xs:element minOccurs="0" name="locatieAdresBuitenland" type="ic:Buitenlandsadres"/>
-        </xs:sequence>
-    </xs:complexType>
+	<xs:complexType name="Vestiging">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="vestigingsnummer" type="ic:Antwoord" maxOccurs="2"/>
+			<xs:element minOccurs="0" name="postadres" type="ic:Contactadres"/>
+			<xs:element minOccurs="0" name="locatieAdresVestiging" type="ic:Binnenlandsadres"/>
+			<xs:element minOccurs="0" name="locatieAdresBuitenland" type="ic:Buitenlandsadres"/>
+		</xs:sequence>
+	</xs:complexType>
 
-    <xs:complexType name="CoordinatenEtrs">
-        <xs:sequence>
-            <xs:element minOccurs="0" name="puntlocatie" type="gml:PointType"/>
-            <xs:element name="referentiestelsel" type="ic:Referentiestelsels"/>
-            <xs:element minOccurs="0" name="vlaklocatie" type="gml:MultiSurfaceType"/>
-        </xs:sequence>
-    </xs:complexType>
+	<xs:complexType name="CoordinatenEtrs">
+		<xs:sequence>
+<!--			<xs:element minOccurs="0" name="puntlocatie" type="gml:PointType"/>-->
+			<xs:element name="referentiestelsel" type="ic:Referentiestelsels"/>
+<!--			<xs:element minOccurs="0" name="vlaklocatie" type="gml:MultiSurfaceType"/>-->
+		</xs:sequence>
+	</xs:complexType>
 
-    <xs:complexType name="Contactadres">
-        <xs:sequence>
-            <xs:element minOccurs="0" name="afwijkendAdres" type="ic:Afwijkendadres"/>
-            <xs:element minOccurs="0" name="binnenlandsAdres" type="ic:Binnenlandsadres"/>
-            <xs:element minOccurs="0" name="buitenlandsAdres" type="ic:Buitenlandsadres"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="Afwijkendadres">
-        <xs:sequence>
-            <xs:element minOccurs="0" name="adrestype" type="ic:PubliceerbaarAdrestype"/>
-            <xs:element name="nummer" type="ic:Antwoord" maxOccurs="2"/>
-            <xs:element name="postcode" type="ic:Antwoord" maxOccurs="2"/>
-            <xs:element name="woonplaatsnaam" type="ic:Antwoord" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="Binnenlandsadres">
-        <xs:sequence>
-            <xs:element minOccurs="0" name="huisletter" type="ic:Antwoord" maxOccurs="2"/>
-            <xs:element name="huisnummer" type="ic:Antwoord" maxOccurs="2"/>
-            <xs:element minOccurs="0" name="huisnummertoevoeging" type="ic:Antwoord" maxOccurs="2"/>
-            <xs:element name="postcode" type="ic:Antwoord" maxOccurs="2"/>
-            <xs:element name="straatnaam" type="ic:Antwoord" maxOccurs="2"/>
-            <xs:element name="woonplaatsnaam" type="ic:Antwoord" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="Buitenlandsadres">
-        <xs:sequence>
-            <xs:element name="adresBuitenland1" type="ic:Antwoord" maxOccurs="2"/>
-            <xs:element minOccurs="0" name="adresBuitenland2" type="ic:Antwoord" maxOccurs="2"/>
-            <xs:element minOccurs="0" name="adresBuitenland3" type="ic:Antwoord" maxOccurs="2"/>
-            <xs:element name="land" type="ic:Antwoord" maxOccurs="2"/>
-        </xs:sequence>
-    </xs:complexType>
+	<xs:complexType name="Contactadres">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="afwijkendAdres" type="ic:Afwijkendadres"/>
+			<xs:element minOccurs="0" name="binnenlandsAdres" type="ic:Binnenlandsadres"/>
+			<xs:element minOccurs="0" name="buitenlandsAdres" type="ic:Buitenlandsadres"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Afwijkendadres">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="adrestype" type="ic:PubliceerbaarAdrestype"/>
+			<xs:element name="nummer" type="ic:Antwoord" maxOccurs="2"/>
+			<xs:element name="postcode" type="ic:Antwoord" maxOccurs="2"/>
+			<xs:element name="woonplaatsnaam" type="ic:Antwoord" maxOccurs="2"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Binnenlandsadres">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="huisletter" type="ic:Antwoord" maxOccurs="2"/>
+			<xs:element name="huisnummer" type="ic:Antwoord" maxOccurs="2"/>
+			<xs:element minOccurs="0" name="huisnummertoevoeging" type="ic:Antwoord" maxOccurs="2"/>
+			<xs:element name="postcode" type="ic:Antwoord" maxOccurs="2"/>
+			<xs:element name="straatnaam" type="ic:Antwoord" maxOccurs="2"/>
+			<xs:element name="woonplaatsnaam" type="ic:Antwoord" maxOccurs="2"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Buitenlandsadres">
+		<xs:sequence>
+			<xs:element name="adresBuitenland1" type="ic:Antwoord" maxOccurs="2"/>
+			<xs:element minOccurs="0" name="adresBuitenland2" type="ic:Antwoord" maxOccurs="2"/>
+			<xs:element minOccurs="0" name="adresBuitenland3" type="ic:Antwoord" maxOccurs="2"/>
+			<xs:element name="land" type="ic:Antwoord" maxOccurs="2"/>
+		</xs:sequence>
+	</xs:complexType>
 
-    <xs:simpleType name="DoelVerzoek">
-        <xs:restriction base="xs:string">
-       	    <xs:enumeration value="Conceptverzoek"/>
-            <xs:enumeration value="Initieren"/>
-            <xs:enumeration value="Aanvullen"/>
-            <xs:enumeration value="Intrekken"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="DocumentTypeGeneriek">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="Advies"/>
-            <xs:enumeration value="Afbeelding"/>
-            <xs:enumeration value="Afspraak"/>
-            <xs:enumeration value="Akte"/>
-            <xs:enumeration value="Begroting"/>
-            <xs:enumeration value="Berekening"/>
-            <xs:enumeration value="Bestek"/>
-            <xs:enumeration value="Brief"/>
-            <xs:enumeration value="Foto"/>
-            <xs:enumeration value="Grafiek"/>
-            <xs:enumeration value="Identificatiebewijs"/>
-            <xs:enumeration value="Kaart"/>
-            <xs:enumeration value="Ontwerp"/>
-            <xs:enumeration value="Overeenkomst"/>
-            <xs:enumeration value="Plan"/>
-            <xs:enumeration value="PlanVanAanpak"/>
-            <xs:enumeration value="Rapport"/>
-            <xs:enumeration value="TechnischeTekening"/>
-            <xs:enumeration value="Tekening"/>
-            <xs:enumeration value="Uittreksel"/>
-            <xs:enumeration value="Verklaring"/>
-            <xs:enumeration value="Overig"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="Referentiestelsels">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="ETRS89"/>
-            <xs:enumeration value="WGS84"/>
-            <xs:enumeration value="RD"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="TypeVerzoek">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="Aanvraag vergunning"/>
-            <xs:enumeration value="Melding"/>
-            <xs:enumeration value="Informatie"/>
-            <xs:enumeration value="Informatie ongewoon voorval"/>
-            <xs:enumeration value="Aanvraag maatwerkvoorschrift"/>
-            <xs:enumeration value="Melding gelijkwaardige maatregel"/>
-            <xs:enumeration value="Aanvraag toestemming gelijkwaardige maatregel"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:complexType name="PubliceerbaarAdrestype">
-        <xs:simpleContent>
-            <xs:extension base="ic:Adrestype">
-                <xs:attribute name="publiceerbaar" type="xs:boolean"/>
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
-    <xs:simpleType name="Adrestype">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="postbusnummer"/>
-            <xs:enumeration value="antwoordnummer"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="VraagClassificatie">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="project"/>
-            <xs:enumeration value="activiteit"/>
-            <xs:enumeration value="verzoek"/>
-            <xs:enumeration value="gevraagdeBijlage"/>
-            <xs:enumeration value="aanvrager"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:complexType name="Antwoord">
-        <xs:simpleContent>
-            <xs:extension base="xs:string">
-                <xs:attribute name="bron" type="ic:bronType"/>
-                <xs:attribute name="publiceerbaar" type="xs:boolean"/>
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
-    <xs:complexType name="PubliceerbaarText">
-        <xs:simpleContent>
-            <xs:extension base="xs:string">
-                <xs:attribute name="publiceerbaar" type="xs:boolean"/>
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
-    <xs:complexType name="PubliceerbaarBoolean">
-        <xs:simpleContent>
-            <xs:extension base="xs:boolean">
-                <xs:attribute name="publiceerbaar" type="xs:boolean"/>
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
+	<xs:simpleType name="DoelVerzoek">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Conceptverzoek"/>
+			<xs:enumeration value="Initieren"/>
+			<xs:enumeration value="Aanvullen"/>
+			<xs:enumeration value="Intrekken"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DocumentTypeGeneriek">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Advies"/>
+			<xs:enumeration value="Afbeelding"/>
+			<xs:enumeration value="Afspraak"/>
+			<xs:enumeration value="Akte"/>
+			<xs:enumeration value="Begroting"/>
+			<xs:enumeration value="Berekening"/>
+			<xs:enumeration value="Bestek"/>
+			<xs:enumeration value="Brief"/>
+			<xs:enumeration value="Foto"/>
+			<xs:enumeration value="Grafiek"/>
+			<xs:enumeration value="Identificatiebewijs"/>
+			<xs:enumeration value="Kaart"/>
+			<xs:enumeration value="Ontwerp"/>
+			<xs:enumeration value="Overeenkomst"/>
+			<xs:enumeration value="Plan"/>
+			<xs:enumeration value="PlanVanAanpak"/>
+			<xs:enumeration value="Rapport"/>
+			<xs:enumeration value="TechnischeTekening"/>
+			<xs:enumeration value="Tekening"/>
+			<xs:enumeration value="Uittreksel"/>
+			<xs:enumeration value="Verklaring"/>
+			<xs:enumeration value="Overig"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Referentiestelsels">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ETRS89"/>
+			<xs:enumeration value="WGS84"/>
+			<xs:enumeration value="RD"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TypeVerzoek">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Aanvraag vergunning"/>
+			<xs:enumeration value="Melding"/>
+			<xs:enumeration value="Informatie"/>
+			<xs:enumeration value="Informatie ongewoon voorval"/>
+			<xs:enumeration value="Aanvraag maatwerkvoorschrift"/>
+			<xs:enumeration value="Melding gelijkwaardige maatregel"/>
+			<xs:enumeration value="Aanvraag toestemming gelijkwaardige maatregel"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PubliceerbaarAdrestype">
+		<xs:simpleContent>
+			<xs:extension base="ic:Adrestype">
+				<xs:attribute name="publiceerbaar" type="xs:boolean"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="Adrestype">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="postbusnummer"/>
+			<xs:enumeration value="antwoordnummer"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VraagClassificatie">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="project"/>
+			<xs:enumeration value="activiteit"/>
+			<xs:enumeration value="verzoek"/>
+			<xs:enumeration value="gevraagdeBijlage"/>
+			<xs:enumeration value="aanvrager"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Antwoord">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="bron" type="ic:bronType"/>
+				<xs:attribute name="publiceerbaar" type="xs:boolean"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="PubliceerbaarText">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="publiceerbaar" type="xs:boolean"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="PubliceerbaarBoolean">
+		<xs:simpleContent>
+			<xs:extension base="xs:boolean">
+				<xs:attribute name="publiceerbaar" type="xs:boolean"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
 
-    <xs:simpleType name="bronType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="DSO-LV"/>
-            <xs:enumeration value="gebruiker"/>
-        </xs:restriction>
-    </xs:simpleType>
+	<xs:simpleType name="bronType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DSO-LV"/>
+			<xs:enumeration value="gebruiker"/>
+		</xs:restriction>
+	</xs:simpleType>
 </xs:schema>
