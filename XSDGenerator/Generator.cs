@@ -68,7 +68,7 @@ public class Generator : IIncrementalGenerator
 				{
 					XmlSchemaComplexType complexType => XSDParser.ParseComplexType(complexType),
 					XmlSchemaSimpleType simpleType => XSDParser.ParseSimpleType(simpleType),
-					XmlSchemaElement element => XSDParser.ParseElement(element),
+					XmlSchemaElement element => XSDParser.ParseElement(element, schema),
 					_ => Enumerable.Empty<string>(),
 				};
 			});

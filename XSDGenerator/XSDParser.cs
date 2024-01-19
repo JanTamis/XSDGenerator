@@ -17,10 +17,22 @@ public static class XSDParser
 				.Where(w => w is not null)
 				.SelectMany(ParseAttribute));
 
+		//if (complexType.ContentType == XmlSchemaContentType.TextOnly)
+		//{
+		//	items = items.Concat(new[]
+		//	{
+		//		"""
+		//			[XmlTextAttribute]
+		//			public string Value { get; set; }
+		//		"""
+		//	});
+		//}
+
 		var documentation = complexType.Annotation?.Items is not null
 			? String.Join("\n", complexType.Annotation.Items
 					.OfType<XmlSchemaDocumentation>()
-					.SelectMany(s => s.Markup.Select(x => "/// " + x.InnerText.Replace("\n", "\n/// "))))
+					.Where(w => w.Markup is not null)
+					.SelectMany(s =>  s.Markup.Select(x => "/// " + x.InnerText.Replace("\n", "\n/// "))))
 			: String.Empty;
 
 		var isAbstract = complexType.IsAbstract;
@@ -148,9 +160,13 @@ public static class XSDParser
 			.SelectMany(ParseParticle);
 	}
 
-	public static IEnumerable<string> ParseElement(XmlSchemaElement element)
+	public static IEnumerable<string> ParseElement(XmlSchemaElement element, XmlSchemaObject parent)
 	{
-		if (element.SchemaType is null)
+		if (parent is XmlSchema schema)
+		{
+
+		}
+		else if (element.SchemaType is null)
 		{
 			var ending = " { get; set; }";
 			var typeName = GetFriendlyName(element.SchemaTypeName.Name);
@@ -243,7 +259,7 @@ public static class XSDParser
 		return particle switch
 		{
 			XmlSchemaSequence sequence => ParseSequence(sequence),
-			XmlSchemaElement element => ParseElement(element),
+			XmlSchemaElement element => ParseElement(element, particle),
 			XmlSchemaChoice choice => ParseChoice(choice),
 			_ => Enumerable.Empty<string>(),
 		};
@@ -286,6 +302,11 @@ public static class XSDParser
 		if (type == "Boolean")
 		{
 			type = "bool";
+		}
+
+		if (type == "Integer")
+		{
+			type = "int";
 		}
 
 		return type;
