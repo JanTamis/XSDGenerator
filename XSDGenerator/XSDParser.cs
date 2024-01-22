@@ -1,3 +1,6 @@
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Linq;
 using System.Xml.Schema;
 
@@ -217,12 +220,21 @@ public static class XSDParser
 		}
 	}
 
-	public static IEnumerable<string> ParseAttribute(XmlSchemaAttribute attribute)
+	public static PropertyDeclarationSyntax ParseAttribute(XmlSchemaAttribute attribute)
 	{
 		if (attribute.SchemaType is null)
 		{
 			var ending = " { get; set; }";
 			var typeName = GetFriendlyName(attribute.SchemaTypeName.Name);
+
+			var roslynAttributes = RoslynParser.ParseAttribute("XmlAttribute", attribute.Name);
+
+			var property = RoslynParser.ParseProperty(Titleize(attribute.Name), typeName, roslynAttributes);
+
+			SyntaxFactory.PropertyDeclaration(roslynAttributes, 
+				SyntaxFactory.TokenList(),
+				SyntaxFactory.IdentifierName(typeName),
+				null, );
 
 			if (!String.IsNullOrEmpty(attribute.FixedValue))
 			{
@@ -265,11 +277,11 @@ public static class XSDParser
 		};
 	}
 
-	private static string? Titleize(string? source)
+	private static string Titleize(string? source)
 	{
 		if (String.IsNullOrEmpty(source))
 		{
-			return source;
+			return String.Empty;
 		}
 
 		source = String.Join(String.Empty, source
